@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+		html, body {
+			height: 100%;
+		}
+
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.header, .footer {
+			background-color: #c08e8f;
+			padding: 20px;
+			text-align: center;
+			font-size: 25px;
+			color: white;
+		}
+
+		/* Container for flexboxes */
+		.row {
+			display: flex;
+			width: 85%;
+			margin: 0 auto;
+			flex: 1 0 auto;
+		}
+
+
+		.column {
+			padding: 10px;
+			color: white;
+			text-align: center;
+			border: 5px solid #fff;
+			height: 600px; /* Should be removed. Only for demonstration */
+		}
+
+		.column.side {
+			flex: 1;
+			background-color: #8fb5c0;
+		}
+
+		.column.middle {
+			flex: 2;
+			background-color: #B48EBF;
+		}
+
+		.footer {
+			flex-shrink: 0;
+		}
+
+
+	</style>
+</head>
+<body>
+	<h2>Flexbox Layout</h2>
+	<div class="header">
+		<h2>Header</h2>
+	</div>
+
+	<div class="row">
+		<div class="column side">Column</div>
+		<div class="column middle">Column</div>
+		<div class="column side">Column</div>
+	</div>
+
+	<div class="footer">
+		<p>Footer</p>
+	</div>
+</body>
+</html>

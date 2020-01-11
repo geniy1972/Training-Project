@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Inline-block Layout</title>
+
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+
+		}
+
+		.header {
+			background-color: #c08e8f;
+			padding: 20px;
+			text-align: center;
+			font-size: 25px;
+			color: white;
+		}
+
+		.column {
+			/*float: left;*/
+			padding: 10px;
+			color: white;
+			text-align: center;
+			border: 5px solid #fff;
+			height: 600px; /* Should be removed. Only for demonstration */
+		}
+		.column.side {
+			width: 20%;
+			background-color: #8fb5c0;
+		}
+		.column.middle {
+			width: 60%;
+			background-color: #B48EBF;
+		}
+		.inlineBlock {
+			display: inline-block;
+		}
+
+		.row {
+			width: 85%;
+			margin: 0 auto;
+			min-height: calc(100vh - 70px);
+
+		}
+
+		.footer {
+			height: 50px;
+			background-color: #c08e8f;
+			text-align: center;
+			font-size: 25px;
+			color: white;
+		}
+
+	</style>
+</head>
+<body>
+
+	<h2>Inline-block Layout</h2>
+
+	<div class="header">
+		Header
+	</div>
+
+	<!-- <div class="row">
+		<div class="column side inlineBlock">Sidebar</div>
+		<div class="column middle inlineBlock">Main</div>
+		<div class="column side inlineBlock">Sidebar</div>
+	</div> -->
+
+
+<!-- Remove extra space between div elements -->
+	<div class="row">
+		<div class="column side inlineBlock">Sidebar</div><div class="column middle inlineBlock">Main</div><div class="column side inlineBlock">Sidebar</div>
+	</div>
+
+	<div class="footer">
+		Footer
+	</div>
+</body>
+</html>
