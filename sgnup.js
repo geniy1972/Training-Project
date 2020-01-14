@@ -46,7 +46,7 @@ function valid() {
     else {
         localStorage.setItem("nameStorage", name.value);
         localStorage.setItem("passwordStorage", password.value);
-        // window.location.assign("congSignUp.html");
+        //window.location.assign("congSignUp.html");
         console.log(localStorage)
 
     }
