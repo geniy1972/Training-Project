@@ -11,13 +11,21 @@ function valid() {
     
     let messages = false;
 
-    if (name.value === '' || name.value == null) {
-        messages ='Name is required';
+    if (email.value === '' || email.value == null) {
+        messages ='Email is required';
+    }
+
+    else if (email.value !== localStorage.EmailStorage) {
+        messages = 'Email is incorrect';
     }
 
 
     else if (password.value === '' || password.value == null) {
         messages = 'Password is required';
+    }
+
+    else if (password.value !== localStorage.passwordStorage) {
+        messages = 'Password is incorrect';
     }
 
     
