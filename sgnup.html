@@ -1,43 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Registration form</title>
     <link rel="stylesheet" href="Style/sgnup.css">
-    
+
 </head>
+
 <body>
     <div class="signup">
         <h1>Sign Up!!</h1>
         <form action="" method="post" name="test" id="form">
-        <div class="fields">
-            <input id="name" name="name" type="text" placeholder="Name" minlength="3" required>
-            <span class="name_error">Name is required</span>
-        </div>
-        <div class="fields">
-            <input id="lastName" name="lastName" type="text" placeholder="Last Name" required>
-            <span class="name_error">Last Name is required</span>
-        </div>
-        <div class="fields">
-            <input id="email" type="text" name="email" placeholder="Email" required>
-            <span class="name_error">Email is incorrect</span>
-        </div>
-        <div class="fields">
-            <input id="password" name="password" type="password" placeholder="Password" required>
-            <span class="name_error">Password must be longer than 6 characters</span>
-        </div>
-        <div class="fields">
-            <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Confirm Password" required>
-            <span class="name_error">Your password and confirmation password do not match.</span>
-        </div>
-        
-        <input id="btn" type="button" value="Sign Up">
-        
-        Already have account?<a href="logn.html" style="text-decoration: none; font-family: 'Play', sans-serif; color: yellow;">&nbsp;Log In</a>
+            <div class="fields">
+                <input id="name" name="name" type="text" placeholder="Name" minlength="3" required>
+                <span class="name_error">Name is required</span>
+            </div>
+            <div class="fields">
+                <input id="lastName" name="lastName" type="text" placeholder="Last Name" required>
+                <span class="name_error">Last Name is required</span>
+            </div>
+            <div class="fields">
+                <input id="email" type="text" name="email" placeholder="Email" required>
+                <span class="name_error">Email is incorrect</span>
+            </div>
+            <div class="fields">
+                <input id="password" name="password" type="password" placeholder="Password" required>
+                <span class="name_error">Password must be longer than 6 characters</span>
+            </div>
+            <div class="fields">
+                <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Confirm Password"
+                    required>
+                <span class="name_error">Your password and confirmation password do not match.</span>
+            </div>
+
+            <input id="btn" type="button" value="Sign Up">
+
+            Already have account?<a href="logn.html"
+                style="text-decoration: none; font-family: 'Play', sans-serif; color: yellow;">&nbsp;Log In</a>
         </form>
     </div>
-    <script src="Js/sgnup.js"></script>   
+    <script src="Js/sgnup.js"></script>
+    <script src="Js/data.js"></script>
 </body>
+
 </html>

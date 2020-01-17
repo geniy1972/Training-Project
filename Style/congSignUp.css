@@ -1,10 +1,8 @@
 body
 {
-    /* background: url(space-saving5.jpg); */
     background-size: cover;
 }
-a
-{
+a {
     color: yellow;
     font-family:Tahoma, Geneva, sans-serif;
     margin-left: 30px;
