@@ -42,7 +42,7 @@ input {
     border-radius: 3px;
     padding: 6px 15px;
     box-sizing: border-box;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     font-size: 16px;
     color: #fff;
 }
@@ -76,4 +76,20 @@ a {
 }
 a:hover {
     color: skyblue;
+}
+
+.name_error {
+    padding: 6px 15px;
+    color: #d50000;
+    font-size: 12px;
+    /* position: absolute; */
+    margin-top: 3px;
+    visibility: hidden;
+    /* display: block; */
+
+    
+}
+
+.fields {
+    margin-bottom: 10px;
 }

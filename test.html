@@ -15,9 +15,8 @@
         <h1>Sign Up!!</h1>
         <form action="" method="post" name="test" id="form">
             <div class="fields">
-                <input id="name" name="name" type="text" placeholder="Name" required>
+                <input id="name" name="name" type="text" placeholder="Name" minlength="3" required>
                 <span class="name_error">Name is required</span>
-
             </div>
             <div class="fields">
                 <input id="lastName" name="lastName" type="text" placeholder="Last Name" required>
@@ -29,7 +28,7 @@
             </div>
             <div class="fields">
                 <input id="password" name="password" type="password" placeholder="Password" required>
-                <span class="name_error">Password must be longer than 3 characters</span>
+                <span class="name_error">Password must be longer than 6 characters</span>
             </div>
             <div class="fields">
                 <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Confirm Password"
@@ -37,14 +36,14 @@
                 <span class="name_error">Your password and confirmation password do not match.</span>
             </div>
 
-            <input id="btn" type="submit" value="Sign Up">
+            <input id="btn" type="button" value="Sign Up">
 
             Already have account?<a href="logn.html"
                 style="text-decoration: none; font-family: 'Play', sans-serif; color: yellow;">&nbsp;Log In</a>
         </form>
     </div>
-    <script src="Js/sgnup.js"></script>
-    <script src="Js/data.js"></script>
+    <script src="Js/test.js"></script>
+
 </body>
 
 </html>

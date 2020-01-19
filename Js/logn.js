@@ -1,58 +1,86 @@
-let Btn = document.getElementById('btn');
-Btn.addEventListener('click', valid);
+// let Btn = document.getElementById('btn');
+// Btn.addEventListener('click', valid);
+
+let form = document.getElementById('form');
+form.addEventListener('submit', valid);
+
 
 function valid() {
-    const name = document.getElementById('name');
+
+    let email = document.getElementById('email');
+
+    let password = document.getElementById('password');
+
+    let errors = document.getElementsByClassName('name_error');
 
 
-    const password = document.getElementById('password');
 
-
-
-    let messages = false;
+    //let messages = false;
 
     // if (email.value === '' || email.value == null) {
     //     messages = 'Email is required';
     // }
 
-    // if (email.value !== localStorage.EmailStorage) {
-    //     messages = 'Email is incorrect';
-    // }
+    let myArr = JSON.parse(localStorage.savedUsersArray);
 
-    let myArr = localStorage.savedUsersArray;
     for (let i = 0; i < myArr.length; i++) {
-        if (email.value !== myArr[i].email) {
-            messages = 'Email is incorrect';
+        if (email.value != myArr[i].email) {
+            errors[0].style.visibility = 'visible';
+            return false;
         }
-        else
+
+        else if (password.value !== myArr[i].password) {
+            //messages = 'Password is incorrect';
+            errors[1].style.visibility = 'visible';
+            return false;
+        }
+        else {
             window.location.assign("congLogIn.html");
+        }
+
     }
 
+    // if (email.value !== myArr) {
+    //     //messages = 'Email is incorrect';
+    //     errors[0].style.visibility = 'visible';
+    //     return false;
+    // }
+
+    // else if (email.value === '' || email.value == null) {
+    //     //messages = 'Email is required';
+    //     errors[0].style.visibility = 'visible';
+    //     errors[0].innerHTML = 'Email is required';
+    //     return false;
+    // }
 
     // else if (password.value === '' || password.value == null) {
-    //     messages = 'Password is required';
+    //     //messages = 'Password is required';
+    //     errors[1].style.visibility = 'visible';
+    //     errors[1].innerHTML = 'Password is required';
+    //     return false;
     // }
 
-    // else if (password.value !== localStorage.passwordStorage) {
-    //     messages = 'Password is incorrect';
+    // else if (password.value !== myArr) {
+    //     //messages = 'Password is incorrect';
+    //     errors[1].style.visibility = 'visible';
+    //     return false;
     // }
 
-
-    if (messages) {
-        alert(messages);
-    }
 
     // else
     //     window.location.assign("congLogIn.html");
 
+
+    // if (messages) {
+    //     alert(messages);
+    // }
+
+
 }
 
 
+// email.addEventListener('input', checkEmail);
 
-let array = [{ lastName: "Chernitskiy", password: "1111111", email: "1@tut.by" }, { lastName: "Chernitskiy2", password: "2111111", email: "2@tut.by" }, { lastName: "Chernitskiy3", password: "3222222", email: "3@tut.by" }];
 
-array.forEach(function (item, i) {
-    console.log(item.email);
-})
-
+// password.addEventListener('input', checkPassword);
 

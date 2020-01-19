@@ -13,21 +13,24 @@
     <div class="signin">
         <h1>Log In</h1>
         <form action="" method="post" name="test" id="form">
-            <div>
+            <div class="fields">
                 <input id="email" name="email" type="text" placeholder="Email address" required>
+                <span class="name_error">Email is incorrect</span>
             </div>
 
 
-            <div>
+            <div class="fields">
                 <input id="password" name="password" type="password" placeholder="Password">
+                <span class="name_error">password is incorrect</span>
             </div>
 
 
-            <input id="btn" type="button" value="Log In" />
+            <input id="btn" type="submit" value="Log In" />
             Don't have account?<a href="sgnup.html" style="font-family:'Play', sans-serif;">&nbsp;Sign Up</a>
         </form>
     </div>
     <script src="Js/logn.js"></script>
+    <script src="Js/data.js"></script>
     <script src="Js/data.js"></script>
 </body>
 
