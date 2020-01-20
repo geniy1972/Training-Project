@@ -62,24 +62,18 @@ input[type="button"]:hover {
 ::placeholder {
     color: #fff;
 }
-.name_error_hidden {
-    padding: 6px 15px;
-    color: #d50000;
-    font-size: 12px;
-    margin-top: 3px;
-    display: none;
-}
+
 .name_error {
     padding: 6px 15px;
     color: #d50000;
     font-size: 12px;
+    /* position: absolute; */
     margin-top: 3px;
-    display: block;
-}
+    visibility: hidden;
+    /* display: block; */
 
-/* .field {
-    border: 1px solid red;
-} */
+    
+}
 
 .fields {
     margin-bottom: 10px;
