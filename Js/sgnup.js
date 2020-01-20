@@ -18,56 +18,51 @@ function valid() {
 
 
     let errors = document.getElementsByTagName('span');
+    let inputs = document.getElementsByClassName('field');
 
     if (!name.value) {
-        //errors[0].style.visibility = 'visible';
         errors[0].classList.add('name_error');
-
-        //name.style.border = "1px solid red";
+        inputs[0].classList.add('inputs');
         return false;
     }
 
     else if (lastName.value === '' || lastName.value == null) {
         errors[1].classList.add('name_error');
-        //lastName.style.border = "1px solid red";
+        inputs[1].classList.add('inputs');
         return false;
     }
 
     else if (adr_pattern.test(email.value) == false) {
         errors[2].classList.add('name_error');
-        //email.style.border = "1px solid red";
+        inputs[2].classList.add('inputs');
         return false;
     }
 
     else if (password.value.length <= 3) {
-        //messages = 'Password must be longer than 3 characters';
         errors[3].classList.add('name_error');
-        //password.style.border = "1px solid red";
+        inputs[3].classList.add('inputs');
         return false;
     }
 
     else if (password.value.length >= 10) {
-        //messages = 'Password must be less than 10 characters';
         errors[3].classList.add('name_error');
         errors[3].innerHTML = 'Password must be less than 10 characters';
-        //password.style.border = "1px solid red";
+        inputs[3].classList.add('inputs');
         return false;
 
     }
 
     else if (password.value === 'password') {
-        //messages = 'Password cannot be password';
         errors[3].classList.add('name_error');
         errors[3].innerHTML = 'Password cannot be password';
-        password.style.border = "1px solid red";
+        inputs[3].classList.add('inputs');
         return false;
     }
 
     else if (password.value !== confirmPassword.value) {
-        //messages = 'Your password and confirmation password do not match.';
         errors[4].classList.add('name_error');
         errors[4].innerHTML = 'Your password and confirmation password do not match.';
-        confirmPassword.style.border = "1px solid red";
+        inputs[4].classList.add('inputs');
         return false;
     }
 

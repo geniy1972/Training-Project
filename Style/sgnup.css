@@ -70,16 +70,16 @@ input[type="button"]:hover {
     display: none;
 }
 .name_error {
-    padding: 6px 15px;
+    padding: 0 15px 3px;
     color: #d50000;
     font-size: 12px;
     margin-top: 3px;
     display: block;
 }
 
-/* .field {
+.inputs {
     border: 1px solid red;
-} */
+}
 
 .fields {
     margin-bottom: 10px;
