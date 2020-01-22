@@ -2,9 +2,6 @@
 let form = document.getElementById('form');
 form.addEventListener('submit', valid);
 
-
-
-
 function valid() {
 
     event.preventDefault();
@@ -17,52 +14,75 @@ function valid() {
     const adr_pattern = /[0-9a-z_-]+@[0-9a-z_-]+\.[a-z]{2,5}$/i;
 
 
+    let containers = document.querySelectorAll('.fields');
     let errors = document.getElementsByTagName('span');
     let inputs = document.getElementsByClassName('field');
 
+    for (i = 0; i < containers.length; i++) {
+        containers[i].classList.remove('has_errors', 'error_long', 'error_less', 'error_required');
+    }
+
+    function removeErrors() {
+        // for (i = 0; i < inputs.length; i++) {
+        //     inputs[i].classList.remove('error-inputs');
+        // }
+        for (i = 0; i < containers.length; i++) {
+            containers[i].classList.remove('has_errors', 'error_long', 'error_less', 'error_required');
+        }
+    }
+
+    for (i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener('change', removeErrors);
+    }
+
     if (!name.value) {
-        errors[0].classList.add('name_error');
-        inputs[0].classList.add('inputs');
+        // inputs[0].classList.add('error-inputs');
+        containers[0].classList.add('has_errors');
+        inputs[0].focus();
         return false;
     }
 
-    else if (lastName.value === '' || lastName.value == null) {
-        errors[1].classList.add('name_error');
-        inputs[1].classList.add('inputs');
+    else if (!lastName.value) {
+        // inputs[1].classList.add('error-inputs');
+        containers[1].classList.add('has_errors');
+        inputs[1].focus();
         return false;
     }
 
     else if (adr_pattern.test(email.value) == false) {
-        errors[2].classList.add('name_error');
-        inputs[2].classList.add('inputs');
+        // inputs[2].classList.add('error-inputs');
+        containers[2].classList.add('has_errors');
+        inputs[2].focus();
         return false;
     }
 
     else if (password.value.length <= 3) {
-        errors[3].classList.add('name_error');
-        inputs[3].classList.add('inputs');
+
+        containers[3].classList.add('has_errors', 'error_long');
+        inputs[3].focus();
         return false;
     }
 
     else if (password.value.length >= 10) {
-        errors[3].classList.add('name_error');
-        errors[3].innerHTML = 'Password must be less than 10 characters';
-        inputs[3].classList.add('inputs');
-        return false;
 
+        containers[3].classList.add('has_errors', 'error_less');
+        inputs[3].focus();
+        return false;
     }
 
     else if (password.value === 'password') {
-        errors[3].classList.add('name_error');
-        errors[3].innerHTML = 'Password cannot be password';
-        inputs[3].classList.add('inputs');
+
+        // inputs[3].classList.add('error-inputs');
+        containers[3].classList.add('has_errors', 'error_required');
+        inputs[3].focus();
         return false;
     }
 
     else if (password.value !== confirmPassword.value) {
-        errors[4].classList.add('name_error');
-        errors[4].innerHTML = 'Your password and confirmation password do not match.';
-        inputs[4].classList.add('inputs');
+        //errors[4].innerHTML = 'Your password and confirmation password do not match.';
+        // inputs[4].classList.add('error-inputs');
+        containers[4].classList.add('has_errors');
+        inputs[4].focus();
         return false;
     }
 

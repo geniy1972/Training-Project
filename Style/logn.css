@@ -78,18 +78,35 @@ a:hover {
     color: skyblue;
 }
 
+.error_hidden {
+    display: none;
+}
 .name_error {
-    padding: 6px 15px;
+    padding: 0 15px 3px;
     color: #d50000;
     font-size: 12px;
-    /* position: absolute; */
     margin-top: 3px;
-    visibility: hidden;
-    /* display: block; */
-
-    
+    display: block;
 }
+
+/* .error-inputs {
+    border: 1px solid red;
+} */
 
 .fields {
     margin-bottom: 10px;
+}
+.fields span {
+    display: none;
+}
+
+.fields.has_errors span {
+    display: block;
+}
+.fields input {
+    border: 1px solid white;   
+}
+
+.fields.has_errors input {
+    border: 1px solid red;
 }

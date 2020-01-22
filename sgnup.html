@@ -16,25 +16,27 @@
         <form action="" method="post" name="test" id="form">
             <div class="fields">
                 <input class="field" id="name" name="name" type="text" placeholder="Name">
-                <span class="name_error_hidden">Name is required</span>
+                <span class="name_error">Name is required</span>
 
             </div>
             <div class="fields">
                 <input class="field" id="lastName" name="lastName" type="text" placeholder="Last Name">
-                <span class="name_error_hidden">Last Name is required</span>
+                <span class="name_error">Last Name is required</span>
             </div>
             <div class="fields">
                 <input class="field" id="email" type="text" name="email" placeholder="Email">
-                <span class="name_error_hidden">Email is incorrect</span>
+                <span class="name_error">Email is incorrect</span>
             </div>
             <div class="fields">
                 <input class="field" id="password" name="password" type="password" placeholder="Password">
-                <span class="name_error_hidden">Password must be longer than 3 characters</span>
+                <span class="name_error msg-long">Password must be longer than 3 characters</span>
+                <span class="name_error msg-less">Password must be less than 10 characters</span>
+                <span class="name_error msg-required">Password cannot be password</span>
             </div>
             <div class="fields">
                 <input class="field" id="confirmPassword" name="confirmPassword" type="password"
                     placeholder="Confirm Password">
-                <span class="name_error_hidden">Your password and confirmation password do not match.</span>
+                <span class="name_error">Your password and confirmation password do not match.</span>
             </div>
 
             <input id="btn" type="submit" value="Sign Up">
