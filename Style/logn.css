@@ -78,9 +78,9 @@ a:hover {
     color: skyblue;
 }
 
-.error_hidden {
+/* .error_hidden {
     display: none;
-}
+} */
 .name_error {
     padding: 0 15px 3px;
     color: #d50000;
@@ -89,9 +89,6 @@ a:hover {
     display: block;
 }
 
-/* .error-inputs {
-    border: 1px solid red;
-} */
 
 .fields {
     margin-bottom: 10px;
@@ -100,7 +97,10 @@ a:hover {
     display: none;
 }
 
-.fields.has_errors span {
+.fields.has_errors.error_blank .msg-blank {
+    display: block;
+}
+.fields.has_errors.error_authentication .msg-auth {
     display: block;
 }
 .fields input {
