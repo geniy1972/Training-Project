@@ -15,17 +15,19 @@
         <h1>Sign Up!!</h1>
         <form action="" method="post" name="test" id="form">
             <div class="fields">
-                <input class="field" id="name" name="name" type="text" placeholder="Name">
+                <input class="field" id="name" name="name" type="text" placeholder="Name" data-errors="blank">
                 <span class="name_error msg-blank">Name is required</span>
 
             </div>
             <div class="fields">
-                <input class="field" id="lastName" name="lastName" type="text" placeholder="Last Name">
+                <input class="field" id="lastName" name="lastName" type="text" placeholder="Last Name"
+                    data-errors="blank">
                 <span class="name_error  msg-blank">Last Name is required</span>
             </div>
             <div class="fields">
-                <input class="field" id="email" type="text" name="email" placeholder="Email">
-                <span class="name_error  msg-blank">Email is incorrect</span>
+                <input class="field" id="email" type="text" name="email" placeholder="Email" data-errors="validEmail">
+                <span class="name_error  msg-blank">Email is required</span>
+                <span class="name_error  msg-email">Email is incorrect</span>
             </div>
             <div class="fields">
                 <input class="field" id="password" name="password" type="password" placeholder="Password"
@@ -36,7 +38,7 @@
             </div>
             <div class="fields">
                 <input class="field" id="confirmPassword" name="confirmPassword" type="password"
-                    placeholder="Confirm Password">
+                    placeholder="Confirm Password" data-errors="blank confirmPassword">
                 <span class="name_error msg-fill">Fill in a confirmation password.</span>
                 <span class="name_error msg-confirmPassword">Your password and confirmation password do not
                     match.</span>
@@ -48,7 +50,8 @@
                 style="text-decoration: none; font-family: 'Play', sans-serif; color: yellow;">&nbsp;Log In</a>
         </form>
     </div>
-    <script src="Js/sgnup.js"></script>
+    <!-- <script src="Js/sgnup.js"></script> -->
+    <script src="Js/sgnup2.js"></script>
     <script src="Js/data.js"></script>
 </body>
 
