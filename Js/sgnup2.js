@@ -20,6 +20,7 @@ form.addEventListener('submit', valid);
 function valid() {
 
     event.preventDefault();
+    //event.stopPropagation();
 
     let name = document.getElementById('name');
     let lastName = document.getElementById('lastName');
@@ -51,6 +52,7 @@ function valid() {
             if (!inputs[i].value) {
                 for (let j = 0; j < containers.length; j++) {
                     containers[j].classList.add('has_errors');
+                    //return false;
                 }
                 return false;
             }
@@ -62,7 +64,7 @@ function valid() {
 
     //Валидация формата Email
     function ValidateEmail() {
-        let adr_pattern = /[0-9a-z_-]+@[0-9a-z_-]+\.[a-z]{2,5}$/i;
+        //let adr_pattern = /[0-9a-z_-]+@[0-9a-z_-]+\.[a-z]{2,5}$/i;
         if (adr_pattern.test(email.value) == false) {
             for (let j = 0; j < containers.length; j++) {
                 containers[j].classList.add('has_errors', 'error_notValidEmail');
@@ -136,8 +138,10 @@ function valid() {
     // }
 
     function removeErrors(event) {
-        let target = event.target;
-        target.classList.remove('has_errors', 'error_long', 'error_less', 'error_required', 'error_blank', 'error_confirmPassword', 'error_notValidEmail')
+        let target, elParent;
+        target = event.target;
+        elParent = target.parentNode;
+        elParent.classList.remove('has_errors', 'error_long', 'error_less', 'error_required', 'error_blank', 'error_confirmPassword', 'error_notValidEmail')
     }
 
     form.addEventListener('input', removeErrors);
