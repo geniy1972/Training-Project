@@ -63,7 +63,6 @@ function valid() {
 
     //Валидация формата Email
     function ValidateEmail(input) {
-        //let adr_pattern = /[0-9a-z_-]+@[0-9a-z_-]+\.[a-z]{2,5}$/i;
         if (adr_pattern.test(email.value) == false) {
             // for (let j = 0; j < containers.length; j++) {
             //     containers[j].classList.add('has_errors', 'error_notValidEmail');
@@ -95,8 +94,6 @@ function valid() {
             elParent.classList.add('has_errors', 'error_long');
             errors = true;
             return false;
-
-            //return false;
         }
         else {
             return true;
@@ -137,7 +134,6 @@ function valid() {
             elParent.classList.add('has_errors', 'error_required');
             errors = true;
             return false;
-
         }
         else {
             return true;
@@ -146,19 +142,18 @@ function valid() {
 
 
     //Валидация на Password == confirmPassword
-    function ConfirmPassword() {
+    function ConfirmPassword(input) {
         if (password.value !== confirmPassword.value) {
             // for (let j = 0; j < containers.length; j++) {
             //     containers[j].classList.add('has_errors', 'error_confirmPassword');
             //     return false;
             // }
-            let target, elParent;
-            target = event.target;
-            elParent = target.parentNode;
+            // let target, elParent;
+            // target = event.target;
+            let elParent = input.parentNode;
             elParent.classList.add('has_errors', 'error_confirmPassword');
             errors = true;
             return false;
-
         }
         else {
             return true;
@@ -191,7 +186,7 @@ function valid() {
 
 
     for (let i = 0; i < inputs.length; i++) {
-        console.log(inputs[i].getAttribute('data-errors'));
+        //console.log(inputs[i].getAttribute('data-errors'));
         if (inputs[i].getAttribute('data-errors').includes('blank')) {
             checkFieldsPresence(inputs[i]);
         }
