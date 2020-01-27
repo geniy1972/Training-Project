@@ -77,10 +77,8 @@ input[type="button"]:hover {
 .fields span {
     display: none;
 }
-/* .fields.has_errors span {
-    display: block;
-} */
-.fields.has_errors .msg-blank {
+
+.fields.has_errors.error_blank .msg-blank {
     display: block;
 }
 .fields.has_errors.error_notValidEmail .msg-email {
