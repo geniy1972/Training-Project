@@ -31,15 +31,15 @@
             </div>
             <div class="fields">
                 <input class="field" id="password" name="password" type="password" placeholder="Password"
-                    data-errors="long less required">
-
+                    data-errors="long less required blank">
+                <span class="name_error msg-blank">Password is required.</span>
                 <span class="name_error msg-long">Password must be longer than 3 characters</span>
                 <span class="name_error msg-less">Password must be less than 10 characters</span>
                 <span class="name_error msg-required">Password cannot be password</span>
             </div>
             <div class="fields">
                 <input class="field" id="confirmPassword" name="confirmPassword" type="password"
-                    placeholder="Confirm Password" data-errors="confirmPassword">
+                    placeholder="Confirm Password" data-errors="confirmPassword blank">
                 <!-- <span class="name_error msg-fill">Fill in a confirmation password.</span> -->
                 <span class="name_error msg-blank">Confirmation password is required.</span>
                 <span class="name_error msg-confirmPassword">Your password and confirmation password do not
