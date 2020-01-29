@@ -14,7 +14,7 @@ let containers = document.querySelectorAll('.fields');
 let inputs = document.getElementsByClassName('field');  //all inputs
 
 const errorsTypes = ['validEmail', 'long', 'less', 'required', 'blank', 'confirmPassword'];
-const classArray = ['has_errors', 'error_validEmail', 'error_long', 'error_less', 'error_required', 'error_blank', 'error_confirmPassword'];
+const classArray = ['error_validEmail', 'error_long', 'error_less', 'error_required', 'error_blank', 'error_confirmPassword'];
 
 
 //Валидация пустых полей
