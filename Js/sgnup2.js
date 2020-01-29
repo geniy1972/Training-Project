@@ -14,12 +14,87 @@ let containers = document.querySelectorAll('.fields');
 let inputs = document.getElementsByClassName('field');  //all inputs
 
 const errorsTypes = ['validEmail', 'long', 'less', 'required', 'blank', 'confirmPassword'];
+const errorsTypes2 = errorsTypes.map(function (item) {
+    return 'error_' + item
+})
+console.log(errorsTypes2);
+
 const classArray = ['error_validEmail', 'error_long', 'error_less', 'error_required', 'error_blank', 'error_confirmPassword'];
 
+let errorsFunctions = {
+    blank: function blank(input) {
+        if (!input.value) {
+            let elParent = input.parentNode;
+            elParent.classList.add('has_errors', 'error_blank');
+            //errors = true;
+            return false;
+        }
+        else {
+            return true;
+        }
+    },
+    validEmail: function validEmail(input) {
+        const adr_pattern = /[0-9a-z_-]+@[0-9a-z_-]+\.[a-z]{2,5}$/i;
+        if (adr_pattern.test(input.value) == false) {
+            let elParent = input.parentNode;
+            elParent.classList.add('has_errors', 'error_validEmail');
+            //errors = true;
+            return false;
+        }
+        else {
+            return true;
+        }
+    },
+    long: function long(input) {
+        if (password.value.length <= 3) {
+            let elParent = input.parentNode;
+            elParent.classList.add('has_errors', 'error_long');
+            //errors = true;
+            return false;
+        }
+        else {
+            return true;
+        }
+    },
+    less: function less(input) {
+        if (password.value.length >= 10) {
+            let elParent = input.parentNode;
+            elParent.classList.add('has_errors', 'error_less');
+            //errors = true;
+            return false;
+        }
+        else {
+            return true;
+        }
+    },
+    required: function required(input) {
+        if (password.value === 'password') {
+            let elParent = input.parentNode;
+            elParent.classList.add('has_errors', 'error_required');
+            //errors = true;
+            return false;
+        }
+        else {
+            return true;
+        }
+    },
+    confirmPassword: function confirmPassword(input) {
+        if (password.value !== confirmPass.value) {
+            let elParent = input.parentNode;
+            elParent.classList.add('has_errors', 'error_confirmPassword');
+            //errors = true;
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+}
+
+console.log(errorsFunctions)
 
 //Валидация пустых полей
 function blank(input) {
-
     if (!input.value) {
         let elParent = input.parentNode;
         elParent.classList.add('has_errors', 'error_blank');
@@ -29,7 +104,6 @@ function blank(input) {
     else {
         return true;
     }
-
 }
 
 //Валидация формата Email
