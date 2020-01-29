@@ -7,41 +7,23 @@ let name = document.getElementById('name');
 let lastName = document.getElementById('lastName');
 let email = document.getElementById('email');
 let password = document.getElementById('password');
-let confirmPassword = document.getElementById('confirmPassword');
+let confirmPass = document.getElementById('confirmPassword');
 //const adr_pattern = /[0-9a-z_-]+@[0-9a-z_-]+\.[a-z]{2,5}$/i;
 
 let containers = document.querySelectorAll('.fields');
 let inputs = document.getElementsByClassName('field');  //all inputs
 
-const classArray = ['has_errors', 'error_notValidEmail', 'error_long', 'error_less', 'error_required', 'error_blank', 'error_confirmPassword'];
-console.log(classArray);
-console.log('---------');
-
-const newClassArray = classArray.join('","');
-console.log(newClassArray);
-console.log('---------');
-const newClassArray2 = '"' + newClassArray + '"';
-console.log(newClassArray2);
-console.log(typeof newClassArray);
-
-
-const newClassArray3 = String(classArray);
-console.log(newClassArray3);
-
-console.log(typeof newClassArray3);
-
-let errors = false;
-console.log(errors);
-
-
+const errorsTypes = ['validEmail', 'long', 'less', 'required', 'blank', 'confirmPassword'];
+const classArray = ['has_errors', 'error_validEmail', 'error_long', 'error_less', 'error_required', 'error_blank', 'error_confirmPassword'];
 
 
 //Валидация пустых полей
-function checkFieldsPresence(input) {
+function blank(input) {
+
     if (!input.value) {
         let elParent = input.parentNode;
         elParent.classList.add('has_errors', 'error_blank');
-        errors = true;
+        //errors = true;
         return false;
     }
     else {
@@ -51,12 +33,12 @@ function checkFieldsPresence(input) {
 }
 
 //Валидация формата Email
-function ValidateEmail(input) {
+function validEmail(input) {
     const adr_pattern = /[0-9a-z_-]+@[0-9a-z_-]+\.[a-z]{2,5}$/i;
     if (adr_pattern.test(input.value) == false) {
         let elParent = input.parentNode;
-        elParent.classList.add('has_errors', 'error_notValidEmail');
-        // errors = true;
+        elParent.classList.add('has_errors', 'error_validEmail');
+        //errors = true;
         return false;
     }
     else {
@@ -65,11 +47,11 @@ function ValidateEmail(input) {
 }
 
 //Валидация на Short Password
-function ShortPassword(input) {
+function long(input) {
     if (password.value.length <= 3) {
         let elParent = input.parentNode;
         elParent.classList.add('has_errors', 'error_long');
-        // errors = true;
+        //errors = true;
         return false;
     }
     else {
@@ -78,11 +60,11 @@ function ShortPassword(input) {
 }
 
 //Валидация на Long Password
-function LongPassword(input) {
+function less(input) {
     if (password.value.length >= 10) {
         let elParent = input.parentNode;
         elParent.classList.add('has_errors', 'error_less');
-        // errors = true;
+        //errors = true;
         return false;
     }
     else {
@@ -91,11 +73,11 @@ function LongPassword(input) {
 }
 
 //Валидация на Password != 'password'
-function Password(input) {
+function required(input) {
     if (password.value === 'password') {
         let elParent = input.parentNode;
         elParent.classList.add('has_errors', 'error_required');
-        // errors = true;
+        //errors = true;
         return false;
     }
     else {
@@ -103,12 +85,12 @@ function Password(input) {
     }
 }
 
-//Валидация на Password == confirmPassword
-function ConfirmPassword(input) {
-    if (password.value !== confirmPassword.value) {
+//Валидация на Password == confirmPass
+function confirmPassword(input) {
+    if (password.value !== confirmPass.value) {
         let elParent = input.parentNode;
         elParent.classList.add('has_errors', 'error_confirmPassword');
-        // errors = true;
+        //errors = true;
         return false;
     }
     else {
@@ -120,45 +102,59 @@ function removeErrors(event) {
     let target, elParent;
     target = event.target;
     elParent = target.parentNode;
-    elParent.classList.remove('has_errors', 'error_notValidEmail', 'error_long', 'error_less', 'error_required', 'error_blank', 'error_confirmPassword');
-    // elParent.classList.remove(newClassArray2);
+    elParent.classList.remove(...classArray);
 }
 
-form.addEventListener('input', removeErrors);//вынести наверх
+form.addEventListener('input', removeErrors);
 
 
 function valid() {
-
-
     event.preventDefault();
+    let errors = false;
+    let error = false;
 
     for (i = 0; i < containers.length; i++) {
-        containers[i].classList.remove('has_errors', 'error_notValidEmail', 'error_long', 'error_less', 'error_required', 'error_blank', 'error_confirmPassword');
-        // containers[i].classList.remove(newClassArray2);
+        containers[i].classList.remove(...classArray);
     }
 
 
     for (let i = 0; i < inputs.length; i++) {
-
         if (inputs[i].getAttribute('data-errors').includes('blank')) {
-            checkFieldsPresence(inputs[i]);
+            error = !blank(inputs[i]);
+            if (error == true) {
+                errors = true;
+            }
         }
         if (inputs[i].getAttribute('data-errors').includes('validEmail')) {
-            ValidateEmail(inputs[i]);
+            error = !validEmail(inputs[i]);
+            if (error == true) {
+                errors = true;
+            }
         }
         if (inputs[i].getAttribute('data-errors').includes('long')) {
-            ShortPassword(inputs[i]);
+            error = !long(inputs[i]);
+            if (error == true) {
+                errors = true;
+            }
         }
         if (inputs[i].getAttribute('data-errors').includes('less')) {
-            LongPassword(inputs[i]);
+            error = !less(inputs[i]);
+            if (error == true) {
+                errors = true;
+            }
         }
         if (inputs[i].getAttribute('data-errors').includes('required')) {
-            Password(inputs[i]);
+            error = !required(inputs[i]);
+            if (error == true) {
+                errors = true;
+            }
         }
         if (inputs[i].getAttribute('data-errors').includes('confirmPassword')) {
-            ConfirmPassword(inputs[i]);
+            error = !confirmPassword(inputs[i]);
+            if (error == true) {
+                errors = true;
+            }
         }
-
     }
 
 
