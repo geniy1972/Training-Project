@@ -3,237 +3,91 @@ let form = document.getElementById('form');
 form.addEventListener('submit', valid);
 
 
-let name = document.getElementById('name');
-let lastName = document.getElementById('lastName');
-let email = document.getElementById('email');
-let password = document.getElementById('password');
-let confirmPass = document.getElementById('confirmPassword');
-//const adr_pattern = /[0-9a-z_-]+@[0-9a-z_-]+\.[a-z]{2,5}$/i;
-
-let containers = document.querySelectorAll('.fields');
-let inputs = document.getElementsByClassName('field');  //all inputs
-
-const errorsTypes = ['validEmail', 'long', 'less', 'required', 'blank', 'confirmPassword'];
-const errorsTypes2 = errorsTypes.map(function (item) {
-    return 'error_' + item
-})
-console.log(errorsTypes2);
-
-const classArray = ['error_validEmail', 'error_long', 'error_less', 'error_required', 'error_blank', 'error_confirmPassword'];
-
-let errorsFunctions = {
-    blank: function blank(input) {
-        if (!input.value) {
-            let elParent = input.parentNode;
-            elParent.classList.add('has_errors', 'error_blank');
-            //errors = true;
-            return false;
-        }
-        else {
-            return true;
-        }
-    },
-    validEmail: function validEmail(input) {
-        const adr_pattern = /[0-9a-z_-]+@[0-9a-z_-]+\.[a-z]{2,5}$/i;
-        if (adr_pattern.test(input.value) == false) {
-            let elParent = input.parentNode;
-            elParent.classList.add('has_errors', 'error_validEmail');
-            //errors = true;
-            return false;
-        }
-        else {
-            return true;
-        }
-    },
-    long: function long(input) {
-        if (password.value.length <= 3) {
-            let elParent = input.parentNode;
-            elParent.classList.add('has_errors', 'error_long');
-            //errors = true;
-            return false;
-        }
-        else {
-            return true;
-        }
-    },
-    less: function less(input) {
-        if (password.value.length >= 10) {
-            let elParent = input.parentNode;
-            elParent.classList.add('has_errors', 'error_less');
-            //errors = true;
-            return false;
-        }
-        else {
-            return true;
-        }
-    },
-    required: function required(input) {
-        if (password.value === 'password') {
-            let elParent = input.parentNode;
-            elParent.classList.add('has_errors', 'error_required');
-            //errors = true;
-            return false;
-        }
-        else {
-            return true;
-        }
-    },
-    confirmPassword: function confirmPassword(input) {
-        if (password.value !== confirmPass.value) {
-            let elParent = input.parentNode;
-            elParent.classList.add('has_errors', 'error_confirmPassword');
-            //errors = true;
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-}
-
-console.log(errorsFunctions)
-
-//Валидация пустых полей
-function blank(input) {
-    if (!input.value) {
-        let elParent = input.parentNode;
-        elParent.classList.add('has_errors', 'error_blank');
-        //errors = true;
-        return false;
-    }
-    else {
-        return true;
-    }
-}
-
-//Валидация формата Email
-function validEmail(input) {
-    const adr_pattern = /[0-9a-z_-]+@[0-9a-z_-]+\.[a-z]{2,5}$/i;
-    if (adr_pattern.test(input.value) == false) {
-        let elParent = input.parentNode;
-        elParent.classList.add('has_errors', 'error_validEmail');
-        //errors = true;
-        return false;
-    }
-    else {
-        return true;
-    }
-}
-
-//Валидация на Short Password
-function long(input) {
-    if (password.value.length <= 3) {
-        let elParent = input.parentNode;
-        elParent.classList.add('has_errors', 'error_long');
-        //errors = true;
-        return false;
-    }
-    else {
-        return true;
-    }
-}
-
-//Валидация на Long Password
-function less(input) {
-    if (password.value.length >= 10) {
-        let elParent = input.parentNode;
-        elParent.classList.add('has_errors', 'error_less');
-        //errors = true;
-        return false;
-    }
-    else {
-        return true;
-    }
-}
-
-//Валидация на Password != 'password'
-function required(input) {
-    if (password.value === 'password') {
-        let elParent = input.parentNode;
-        elParent.classList.add('has_errors', 'error_required');
-        //errors = true;
-        return false;
-    }
-    else {
-        return true;
-    }
-}
-
-//Валидация на Password == confirmPass
-function confirmPassword(input) {
-    if (password.value !== confirmPass.value) {
-        let elParent = input.parentNode;
-        elParent.classList.add('has_errors', 'error_confirmPassword');
-        //errors = true;
-        return false;
-    }
-    else {
-        return true;
-    }
-}
-
-function removeErrors(event) {
-    let target, elParent;
-    target = event.target;
-    elParent = target.parentNode;
-    elParent.classList.remove(...classArray);
-}
-
-form.addEventListener('input', removeErrors);
-
-
 function valid() {
+
     event.preventDefault();
-    let errors = false;
-    let error = false;
+
+    let name = document.getElementById('name');
+    let lastName = document.getElementById('lastName');
+    let email = document.getElementById('email');
+    let password = document.getElementById('password');
+    let confirmPassword = document.getElementById('confirmPassword');
+    const adr_pattern = /[0-9a-z_-]+@[0-9a-z_-]+\.[a-z]{2,5}$/i;
+
+
+    let containers = document.querySelectorAll('.fields');
+    let inputs = document.getElementsByClassName('field');
+
+
 
     for (i = 0; i < containers.length; i++) {
-        containers[i].classList.remove(...classArray);
+        containers[i].classList.remove('has_errors', 'error_long', 'error_less', 'error_required', 'error_blank', 'error_confirmPassword');
+    }
+
+    function removeErrors() {
+        for (i = 0; i < containers.length; i++) {
+            containers[i].classList.remove('has_errors', 'error_long', 'error_less', 'error_required', 'error_blank', 'error_confirmPassword');
+        }
+    }
+    name.addEventListener('input', removeErrors);
+    lastName.addEventListener('input', removeErrors);
+    email.addEventListener('input', removeErrors);
+    password.addEventListener('input', removeErrors);
+    confirmPassword.addEventListener('input', removeErrors);
+
+
+    if (!name.value) {
+        containers[0].classList.add('has_errors');
+        inputs[0].focus();
+        return false;
+    }
+
+    else if (!lastName.value) {
+        containers[1].classList.add('has_errors');
+        inputs[1].focus();
+        return false;
+    }
+
+    else if (adr_pattern.test(email.value) == false) {
+        containers[2].classList.add('has_errors');
+        inputs[2].focus();
+        return false;
+    }
+
+    else if (password.value.length <= 3) {
+
+        containers[3].classList.add('has_errors', 'error_long');
+        inputs[3].focus();
+        return false;
+    }
+
+    else if (password.value.length >= 10) {
+
+        containers[3].classList.add('has_errors', 'error_less');
+        inputs[3].focus();
+        return false;
+    }
+
+    else if (password.value === 'password') {
+        containers[3].classList.add('has_errors', 'error_required');
+        inputs[3].focus();
+        return false;
+    }
+
+    else if (!confirmPassword.value) {
+        containers[4].classList.add('has_errors', 'error_blank');
+        inputs[4].focus();
+        return false;
+    }
+
+    else if (password.value !== confirmPassword.value) {
+        containers[4].classList.add('has_errors', 'error_confirmPassword');
+        inputs[4].focus();
+        return false;
     }
 
 
-    for (let i = 0; i < inputs.length; i++) {
-        if (inputs[i].getAttribute('data-errors').includes('blank')) {
-            error = !blank(inputs[i]);
-            if (error == true) {
-                errors = true;
-            }
-        }
-        if (inputs[i].getAttribute('data-errors').includes('validEmail')) {
-            error = !validEmail(inputs[i]);
-            if (error == true) {
-                errors = true;
-            }
-        }
-        if (inputs[i].getAttribute('data-errors').includes('long')) {
-            error = !long(inputs[i]);
-            if (error == true) {
-                errors = true;
-            }
-        }
-        if (inputs[i].getAttribute('data-errors').includes('less')) {
-            error = !less(inputs[i]);
-            if (error == true) {
-                errors = true;
-            }
-        }
-        if (inputs[i].getAttribute('data-errors').includes('required')) {
-            error = !required(inputs[i]);
-            if (error == true) {
-                errors = true;
-            }
-        }
-        if (inputs[i].getAttribute('data-errors').includes('confirmPassword')) {
-            error = !confirmPassword(inputs[i]);
-            if (error == true) {
-                errors = true;
-            }
-        }
-    }
-
-
-    console.log(errors);
-    if (!errors) {
+    else {
         let obj = new Object();
         obj.name = name.value;
         obj.lastName = lastName.value;
@@ -244,8 +98,6 @@ function valid() {
 
         window.location.assign("congSignUp.html");
     }
-
 }
-
 
 
