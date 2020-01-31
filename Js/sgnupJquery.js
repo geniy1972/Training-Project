@@ -37,9 +37,10 @@ $(document).ready(function () {
 
     let errorsFunctions = {
         blank: function (input) {
-            if (!input.value) {
-                let elParent = input.parentNode;
-                elParent.classList.add('has_errors', 'error_blank');
+            if (!$('input').val()) {
+                //let elParent = input.parentNode;
+                //elParent.classList.add('has_errors', 'error_blank');
+                $('input').parent().addClass('has_errors', 'error_blank');
                 return false;
             }
             else {
@@ -48,9 +49,10 @@ $(document).ready(function () {
         },
         validEmail: function (input) {
             const adr_pattern = /[0-9a-z_-]+@[0-9a-z_-]+\.[a-z]{2,5}$/i;
-            if (adr_pattern.test(input.value) == false) {
-                let elParent = input.parentNode;
-                elParent.classList.add('has_errors', 'error_validEmail');
+            if (adr_pattern.test($('input').val()) == false) {
+                //let elParent = input.parentNode;
+                //elParent.classList.add('has_errors', 'error_validEmail');
+                $('input').parent().addClass('has_errors', 'error_validEmail');
                 return false;
             }
             else {
@@ -58,9 +60,10 @@ $(document).ready(function () {
             }
         },
         long: function (input) {
-            if (password.value.length <= 3) {
-                let elParent = input.parentNode;
-                elParent.classList.add('has_errors', 'error_long');
+            if ($(password).val().length <= 3) {
+                //let elParent = input.parentNode;
+                //elParent.classList.add('has_errors', 'error_long');
+                $('input').parent().addClass('has_errors', 'error_long');
                 return false;
             }
             else {
@@ -68,9 +71,10 @@ $(document).ready(function () {
             }
         },
         less: function (input) {
-            if (password.value.length >= 10) {
-                let elParent = input.parentNode;
-                elParent.classList.add('has_errors', 'error_less');
+            if ($(password).val().length >= 10) {
+                //let elParent = input.parentNode;
+                //elParent.classList.add('has_errors', 'error_less');
+                $('input').parent().addClass('has_errors', 'error_less');
                 return false;
             }
             else {
@@ -78,9 +82,10 @@ $(document).ready(function () {
             }
         },
         required: function (input) {
-            if (password.value === 'password') {
-                let elParent = input.parentNode;
-                elParent.classList.add('has_errors', 'error_required');
+            if ($(password).val() === 'password') {
+                //let elParent = input.parentNode;
+                //elParent.classList.add('has_errors', 'error_required');
+                $('input').parent().addClass('has_errors', 'error_required');
                 return false;
             }
             else {
@@ -88,9 +93,10 @@ $(document).ready(function () {
             }
         },
         confirmPassword: function (input) {
-            if (password.value !== confirmPass.value) {
-                let elParent = input.parentNode;
-                elParent.classList.add('has_errors', 'error_confirmPassword');
+            if ($(password).val() !== $(confirmPass).val()) {
+                //let elParent = input.parentNode;
+                //elParent.classList.add('has_errors', 'error_confirmPassword');
+                $('input').parent().addClass('has_errors', 'error_confirmPassword');
                 return false;
             }
             else {
@@ -103,11 +109,14 @@ $(document).ready(function () {
         let target, elParent;
         target = event.target;
         elParent = target.parentNode;
-        elParent.classList.remove(...classArray);
-        elParent.classList.remove('has_errors');
+        //elParent.classList.remove(...classArray);
+        //elParent.classList.remove('has_errors');
+        $(elParent).parent().removeClass(...classArray);
+        $(elParent).parent().removeClass('has_errors');
     }
 
-    form.addEventListener('input', removeErrors);
+    //form.addEventListener('input', removeErrors);
+    $('#form').on('change', removeErrors);          //???????????????????????????
 
 
     function valid() {
