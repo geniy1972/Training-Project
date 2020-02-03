@@ -26,21 +26,24 @@ $(document).ready(function () {
 
     const errorsTypes = ['blank', 'validEmail', 'long', 'less', 'required', 'confirmPassword'];
 
+
     // const classArray = errorsTypes.map(function (item) {
     //     return 'error_' + item
     // })
 
-    const classArray = $(errorsTypes).map(function (item) {
+    const classArray = $(errorsTypes).map(function (index, item) {
         return 'error_' + item
-    })
+    }).get().join(" ");
     console.log(classArray);
+    //console.log(classArray.join(" "));
+
 
     let errorsFunctions = {
         blank: function (input) {
-            if (!$('input').val()) {
+            if (!$(input).val()) {
                 //let elParent = input.parentNode;
                 //elParent.classList.add('has_errors', 'error_blank');
-                $('input').parent().addClass('has_errors', 'error_blank');
+                $(input).parent().addClass('has_errors error_blank');  //???????????????????????????
                 return false;
             }
             else {
@@ -49,10 +52,10 @@ $(document).ready(function () {
         },
         validEmail: function (input) {
             const adr_pattern = /[0-9a-z_-]+@[0-9a-z_-]+\.[a-z]{2,5}$/i;
-            if (adr_pattern.test($('input').val()) == false) {
+            if (adr_pattern.test($(input).val()) == false) {
                 //let elParent = input.parentNode;
                 //elParent.classList.add('has_errors', 'error_validEmail');
-                $('input').parent().addClass('has_errors', 'error_validEmail');
+                $(input).parent().addClass('has_errors error_validEmail');
                 return false;
             }
             else {
@@ -60,10 +63,10 @@ $(document).ready(function () {
             }
         },
         long: function (input) {
-            if ($(password).val().length <= 3) {
+            if ($(input).val().length <= 3) {
                 //let elParent = input.parentNode;
                 //elParent.classList.add('has_errors', 'error_long');
-                $('input').parent().addClass('has_errors', 'error_long');
+                $(input).parent().addClass('has_errors error_long');
                 return false;
             }
             else {
@@ -71,10 +74,10 @@ $(document).ready(function () {
             }
         },
         less: function (input) {
-            if ($(password).val().length >= 10) {
+            if ($(input).val().length >= 10) {
                 //let elParent = input.parentNode;
                 //elParent.classList.add('has_errors', 'error_less');
-                $('input').parent().addClass('has_errors', 'error_less');
+                $(input).parent().addClass('has_errors error_less');
                 return false;
             }
             else {
@@ -82,10 +85,10 @@ $(document).ready(function () {
             }
         },
         required: function (input) {
-            if ($(password).val() === 'password') {
+            if ($(input).val() === 'password') {
                 //let elParent = input.parentNode;
                 //elParent.classList.add('has_errors', 'error_required');
-                $('input').parent().addClass('has_errors', 'error_required');
+                $(input).parent().addClass('has_errors error_required');
                 return false;
             }
             else {
@@ -93,10 +96,10 @@ $(document).ready(function () {
             }
         },
         confirmPassword: function (input) {
-            if ($(password).val() !== $(confirmPass).val()) {
+            if ($(password).val() !== $(input).val()) {
                 //let elParent = input.parentNode;
                 //elParent.classList.add('has_errors', 'error_confirmPassword');
-                $('input').parent().addClass('has_errors', 'error_confirmPassword');
+                $(input).parent().addClass('has_errors error_confirmPassword');
                 return false;
             }
             else {
@@ -111,8 +114,10 @@ $(document).ready(function () {
         elParent = target.parentNode;
         //elParent.classList.remove(...classArray);
         //elParent.classList.remove('has_errors');
-        $(elParent).parent().removeClass(...classArray);
-        $(elParent).parent().removeClass('has_errors');
+        // $(elParent).parent('div').removeClass(...classArray);
+        // $(elParent).parent('div').removeClass('has_errors');
+        $(target).parent('div').removeClass(classArray);     //???????????????????????????
+        $(target).parent('div').removeClass('has_errors');  //???????????????????????????
     }
 
     //form.addEventListener('input', removeErrors);
@@ -124,31 +129,53 @@ $(document).ready(function () {
         let errors = false;
         let error = false;
 
-        for (i = 0; i < containers.length; i++) {
-            containers[i].classList.remove(...classArray);
-            containers[i].classList.remove('has_errors');
-        }
+        // for (i = 0; i < containers.length; i++) {
+        //     containers[i].classList.remove(...classArray);
+        //     containers[i].classList.remove('has_errors');
+        // }
+        $('.fields').removeClass(classArray);
+        $('.fields').removeClass('has_errors');
 
 
-        for (let i = 0; i < inputs.length; i++) {
+
+
+
+        // for (let i = 0; i < inputs.length; i++) {
+        //     for (let j = 0; j < errorsTypes.length; j++) {
+        //         if (inputs[i].getAttribute('data-errors').includes(errorsTypes[j])) {
+        //             error = !errorsFunctions[errorsTypes[j]](inputs[i]);
+        //             if (error == true) {
+        //                 errors = true;
+        //             }
+        //         }
+        //     }
+        // }
+
+        $(inputs).each(function (i) {
             for (let j = 0; j < errorsTypes.length; j++) {
-                if (inputs[i].getAttribute('data-errors').includes(errorsTypes[j])) {
+                if ($(this).attr('data-errors').includes(errorsTypes[j])) {
                     error = !errorsFunctions[errorsTypes[j]](inputs[i]);
                     if (error == true) {
                         errors = true;
                     }
                 }
             }
-        }
+        })
+
+
 
 
         console.log(errors);
         if (!errors) {
             let obj = new Object();
-            obj.name = name.value;
-            obj.lastName = lastName.value;
-            obj.password = password.value;
-            obj.email = email.value;
+            //obj.name = name.value;
+            obj.name = $(name).val();
+            //obj.lastName = lastName.value;
+            obj.lastName = $(lastName).val();
+            //obj.password = password.value;
+            obj.password = $(password).val();
+            //obj.email = email.value;
+            obj.email = $(email).val();
 
             savelocalStorage(obj);
 

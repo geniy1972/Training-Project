@@ -11,13 +11,16 @@ let confirmPass = document.getElementById('confirmPassword');
 //const adr_pattern = /[0-9a-z_-]+@[0-9a-z_-]+\.[a-z]{2,5}$/i;
 
 let containers = document.querySelectorAll('.fields');
+console.log(containers);
 let inputs = document.getElementsByClassName('field');  //all inputs
+console.log(inputs);
 
 const errorsTypes = ['blank', 'validEmail', 'long', 'less', 'required', 'confirmPassword'];
 
 const classArray = errorsTypes.map(function (item) {
     return 'error_' + item
 })
+console.log(classArray);
 
 let errorsFunctions = {
     blank: function (input) {
