@@ -13,7 +13,7 @@
 <body>
     <div class="signup">
         <h1>Sign Up!!</h1>
-        <form action="" method="post" name="test" id="form">
+        <form action="" method="post" name="test" id="formSignUp">
             <div class="fields">
                 <input class="field" id="name" name="name" type="text" placeholder="Name" data-errors="blank">
                 <span class="name_error msg-blank">Name is required</span>
@@ -48,14 +48,40 @@
 
             <input id="btn" type="submit" value="Sign Up">
 
-            Already have account?<a href="logn.html"
+            Already have account?<a href="#" id="logIn"
                 style="text-decoration: none; font-family: 'Play', sans-serif; color: yellow;">&nbsp;Log In</a>
         </form>
     </div>
+
+    <div class="signin">
+        <h1>Log In</h1>
+        <form action="" method="post" name="test" id="formLogIn">
+            <div class="fields">
+                <input class="field" id="email_logIn" name="email" type="text" placeholder="Email address"
+                    data-errors="blank authentication">
+                <span class="name_error msg-blank">Cannot be blank</span>
+                <span class="name_error msg-auth">Email or Password is incorrect</span>
+            </div>
+
+
+            <div class="fields">
+                <input class="field" id="password_logIn" name="password" type="password" placeholder="Password"
+                    data-errors="blank authentication">
+                <span class="name_error msg-blank">Cannot be blank</span>
+                <span class="name_error msg-auth">Email or Password is incorrect</span>
+            </div>
+
+
+            <input id="btn_logIn" type="submit" value="Log In" />
+            Don't have account?<a href="#" id="signUp" style="font-family:'Play', sans-serif;">&nbsp;Sign Up</a>
+        </form>
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- <script src="Js/sgnup.js"></script> -->
     <script src="Js/sgnupJquery.js"></script>
     <!-- <script src="Js/sgnup2.js"></script> -->
+    <script src="Js/lognJquery.js"></script>
     <script src="Js/data.js"></script>
 </body>
 

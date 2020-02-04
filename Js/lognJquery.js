@@ -1,12 +1,12 @@
 $(document).ready(function () {
     // let form = document.getElementById('form');
     // form.addEventListener('submit', valid);
-    $('#form').on('submit', valid);
+    $('#formLogIn').on('submit', valid);
 
     //let email = document.getElementById('email');
-    let email = $('#email');
+    let email = $('#email_logIn');
     //let password = document.getElementById('password');
-    let password = $('#password');
+    let password = $('#password_logIn');
 
     //let containers = document.querySelectorAll('.fields');
     let containers = $('.fields');
@@ -59,7 +59,8 @@ $(document).ready(function () {
         $(target).parent('div').removeClass('has_errors');
     }
 
-    form.addEventListener('input', removeErrors);
+    //form.addEventListener('input', removeErrors);
+    $('#formLogIn').on('change', removeErrors);
 
 
     function valid() {

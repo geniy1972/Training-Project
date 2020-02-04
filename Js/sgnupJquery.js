@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     // let form = document.getElementById('form');
     // form.addEventListener('submit', valid);
-    $('#form').on('submit', valid);
+    $('#formSignUp').on('submit', valid);
 
 
     //let name = document.getElementById('name');
@@ -108,6 +108,21 @@ $(document).ready(function () {
         }
     }
 
+    let logInForm = $('.signin');
+    let signUpForm = $('.signup');
+
+    $(document).on('click', '#logIn', function () {
+        logInForm.css('display', 'block');
+        // signUpForm.css('display', 'none');
+        $(signUpForm).replaceWith(logInForm);
+    })
+
+    $(document).on('click', '#signUp', function () {
+        // logInForm.css('display', 'none');
+        signUpForm.css('display', 'block');
+        $(logInForm).replaceWith(signUpForm);
+    })
+
     function removeErrors(event) {
         let target, elParent;
         target = event.target;
@@ -121,7 +136,7 @@ $(document).ready(function () {
     }
 
     //form.addEventListener('input', removeErrors);
-    $('#form').on('change', removeErrors);          //???????????????????????????
+    $('#formSignUp').on('change', removeErrors);          //???????????????????????????
 
 
     function valid() {
@@ -165,7 +180,7 @@ $(document).ready(function () {
 
 
 
-        console.log(errors);
+
         if (!errors) {
             let obj = new Object();
             //obj.name = name.value;

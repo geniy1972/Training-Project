@@ -19,7 +19,21 @@ body {
 	height:430px;
 	margin-left:180px;
 	margin:0 auto;
-	margin-top:90px;
+    margin-top:90px;
+    display: block;
+}
+.signin
+{
+    background:rgba(44, 62, 80, 0.7);
+	padding:40px;
+	width:250px;
+	margin:auto;
+	margin-top:80px;
+	height:430px;
+	margin-left:180px;
+	margin:0 auto;
+    margin-top:90px;
+    display: none;
 }
 form
 {
@@ -61,6 +75,10 @@ input[type="button"]:hover {
 
 ::placeholder {
     color: #fff;
+}
+a {
+    color: yellow;
+    text-decoration: blink;
 }
 
 .name_error {
@@ -107,6 +125,10 @@ input[type="button"]:hover {
 
 .fields.has_errors input {
     border: 1px solid red;
+}
+
+.fields.has_errors.error_authentication .msg-auth {
+    display: block;
 }
 
 
