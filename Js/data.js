@@ -5,6 +5,7 @@ if (!objArray) {
 else {
     objArray = JSON.parse(objArray);
 }
+//console.log(objArray);
 
 function savelocalStorage(obj) {
     objArray.push(obj);
@@ -21,4 +22,5 @@ function checkUsers(email, password) {
     }
     return false;
 }
+
 

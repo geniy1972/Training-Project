@@ -7,19 +7,17 @@ a {
     font-family:Tahoma, Geneva, sans-serif;
     margin-left: 30px;
 }
-.cong
-{
+.cong {
     background: rgba(44,62,80,0.7);
     padding: 40px;
     
-    height: 300px;
-    margin-left: 180px;
+    height: 150px;
+    
     margin: 0 auto;
     margin-top: 60px;
     width: 240px;
 }
-h2
-{
+h2 {
     margin-top: 50px;
     margin-left: 10px;
 }

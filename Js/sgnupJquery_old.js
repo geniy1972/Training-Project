@@ -1,37 +1,54 @@
 $(document).ready(function () {
 
+    // let form = document.getElementById('form');
+    // form.addEventListener('submit', valid);
     $('#formSignUp').on('submit', valid);
-    $('#formLogIn').on('submit', valid_login);
+    $('#formLogIn').on('submit', valid);
 
+
+    //let name = document.getElementById('name');
     let name = $('#name');
-
+    //let lastName = document.getElementById('lastName');
     let lastName = $('#lastName');
-
+    //let email = document.getElementById('email');
     let email = $('#email');
-
+    //let password = document.getElementById('password');
     let password = $('#password');
-
+    //let confirmPass = document.getElementById('confirmPassword');
     let confirmPass = $('#confirmPassword');
+    //const adr_pattern = /[0-9a-z_-]+@[0-9a-z_-]+\.[a-z]{2,5}$/i;
 
+    //let containers = document.querySelectorAll('.fields');
     let containers = $('.fields');
-
-    let inputs = $('.signup .field');  //all inputs
-    let inputs_login = $('.signin .field');
+    console.log(containers);
+    //let inputs = document.getElementsByClassName('field');  //all inputs
+    let inputs = $('.field');  //all inputs
 
     let email_logIn = $('#email_logIn');
     let password_logIn = $('#password_logIn');
 
+
+
     const errorsTypes = ['blank', 'validEmail', 'long', 'less', 'required', 'confirmPassword', 'authentication'];
+
+
+    // const classArray = errorsTypes.map(function (item) {
+    //     return 'error_' + item
+    // })
 
     const classArray = $(errorsTypes).map(function (index, item) {
         return 'error_' + item
     }).get().join(" ");
-    //console.log(classArray);
+    console.log(classArray);
+    //console.log(classArray.join(" "));
+
 
     let errorsFunctions = {
         blank: function (input) {
             if (!$(input).val()) {
-                $(input).parent().addClass('has_errors error_blank');
+                //let elParent = input.parentNode;
+                //elParent.classList.add('has_errors', 'error_blank');
+                $(input).parent().addClass('has_errors error_blank');  //???????????????????????????
                 return false;
             }
             else {
@@ -41,6 +58,8 @@ $(document).ready(function () {
         validEmail: function (input) {
             const adr_pattern = /[0-9a-z_-]+@[0-9a-z_-]+\.[a-z]{2,5}$/i;
             if (adr_pattern.test($(input).val()) == false) {
+                //let elParent = input.parentNode;
+                //elParent.classList.add('has_errors', 'error_validEmail');
                 $(input).parent().addClass('has_errors error_validEmail');
                 return false;
             }
@@ -50,6 +69,8 @@ $(document).ready(function () {
         },
         long: function (input) {
             if ($(input).val().length <= 3) {
+                //let elParent = input.parentNode;
+                //elParent.classList.add('has_errors', 'error_long');
                 $(input).parent().addClass('has_errors error_long');
                 return false;
             }
@@ -59,6 +80,8 @@ $(document).ready(function () {
         },
         less: function (input) {
             if ($(input).val().length >= 10) {
+                //let elParent = input.parentNode;
+                //elParent.classList.add('has_errors', 'error_less');
                 $(input).parent().addClass('has_errors error_less');
                 return false;
             }
@@ -68,6 +91,8 @@ $(document).ready(function () {
         },
         required: function (input) {
             if ($(input).val() === 'password') {
+                //let elParent = input.parentNode;
+                //elParent.classList.add('has_errors', 'error_required');
                 $(input).parent().addClass('has_errors error_required');
                 return false;
             }
@@ -77,6 +102,8 @@ $(document).ready(function () {
         },
         confirmPassword: function (input) {
             if ($(password).val() !== $(input).val()) {
+                //let elParent = input.parentNode;
+                //elParent.classList.add('has_errors', 'error_confirmPassword');
                 $(input).parent().addClass('has_errors error_confirmPassword');
                 return false;
             }
@@ -86,6 +113,8 @@ $(document).ready(function () {
         },
         authentication: function (input) {
             if (!checkUsers()) {
+                // let elParent = input.parentNode;
+                // elParent.classList.add('has_errors', 'error_authentication');
                 $(input).parent().addClass('has_errors error_authentication');
                 return false;
             }
@@ -97,61 +126,62 @@ $(document).ready(function () {
 
     let logInForm = $('.signin');
     let signUpForm = $('.signup');
-    let congLogIn = $('.congLogIn')
-
-    // $(document).on('click', '#logIn', function () {
-    //     logInForm.css('display', 'block');
-    //     //signUpForm.css('display', 'none');
-    //     $(signUpForm).replaceWith(logInForm);
-    // })
-
-    // $(document).on('click', '#signUp', function () {
-    //     //logInForm.css('display', 'none');
-    //     signUpForm.css('display', 'block');
-    //     $(logInForm).replaceWith(signUpForm);
-    // })
 
     $(document).on('click', '#logIn', function () {
-        // $(signUpForm).fadeOut(2000, function () {
-        //     $(logInForm).fadeIn(2000);
-        // });
-        fadeOutElement(signUpForm, logInForm)
+        logInForm.css('display', 'block');
+        signUpForm.css('display', 'none');
+        $(signUpForm).replaceWith(logInForm);
     })
 
     $(document).on('click', '#signUp', function () {
-        // $(logInForm).fadeOut(2000, function () {
-        //     $(signUpForm).fadeIn(2000);
-        // });
-        fadeOutElement(logInForm, signUpForm)
+        logInForm.css('display', 'none');
+        signUpForm.css('display', 'block');
+        $(logInForm).replaceWith(signUpForm);
     })
 
     function removeErrors(event) {
         let target, elParent;
         target = event.target;
         elParent = target.parentNode;
+        //elParent.classList.remove(...classArray);
+        //elParent.classList.remove('has_errors');
+        // $(elParent).parent('div').removeClass(...classArray);
+        // $(elParent).parent('div').removeClass('has_errors');
         $(target).parent('div').removeClass(classArray);
         $(target).parent('div').removeClass('has_errors');
     }
 
+    //form.addEventListener('input', removeErrors);
     $('#formSignUp').on('change', removeErrors);
     $('#formLogIn').on('change', removeErrors);
 
-
-    //
-
-    function fadeOutElement(elementOut, elementIn) {
-        $(elementOut).fadeOut(2000)
-        $(elementIn).fadeIn(2000);
-    }
 
     function valid() {
         event.preventDefault();
         let errors = false;
         let error = false;
 
+        // for (i = 0; i < containers.length; i++) {
+        //     containers[i].classList.remove(...classArray);
+        //     containers[i].classList.remove('has_errors');
+        // }
         $('.fields').removeClass(classArray);
         $('.fields').removeClass('has_errors');
 
+
+
+
+
+        // for (let i = 0; i < inputs.length; i++) {
+        //     for (let j = 0; j < errorsTypes.length; j++) {
+        //         if (inputs[i].getAttribute('data-errors').includes(errorsTypes[j])) {
+        //             error = !errorsFunctions[errorsTypes[j]](inputs[i]);
+        //             if (error == true) {
+        //                 errors = true;
+        //             }
+        //         }
+        //     }
+        // }
 
         $(inputs).each(function (i) {
             for (let j = 0; j < errorsTypes.length; j++) {
@@ -163,6 +193,9 @@ $(document).ready(function () {
                 }
             }
         })
+
+
+
 
 
         if (!errors) {
@@ -177,48 +210,11 @@ $(document).ready(function () {
             obj.email = $(email).val();
 
             savelocalStorage(obj);
-            //window.location.assign("congSignUp.html");
-            $(signUpForm).fadeOut(2000, function () {
-                $('.congSignUp').fadeIn(2000);
-            });
-
+            window.location.assign("congSignUp.html");
         }
 
-    }
-
-    function valid_login() {
-        event.preventDefault();
-
-        // let errors_login = false;
-        // let error_login = false;
-
-        $('.fields').removeClass(classArray);
-        $('.fields').removeClass('has_errors');
-
-
-
-        $(inputs_login).each(function (i) {
-            for (let j = 0; j < errorsTypes.length; j++) {
-                if ($(this).attr('data-errors').includes(errorsTypes[j])) {
-                    //error_login = !errorsFunctions[errorsTypes[j]](inputs_login[i]);
-                    errorsFunctions[errorsTypes[j]](inputs_login[i]);
-                    // if (error_login == true) {
-                    //     errors_login = true;
-                    // }
-                }
-            }
-        })
-
-
         if (checkUsers($(email_logIn).val(), $(password_logIn).val())) {
-            //window.location.assign("congLogIn.html");
-
-            fadeOutElement(logInForm, congLogIn)
-
-            // $(logInForm).fadeOut(2000, function () {
-            //     $(congLogIn).fadeIn(2000);
-            // });
-
+            window.location.assign("congLogIn.html");
         }
 
     }

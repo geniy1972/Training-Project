@@ -131,5 +131,21 @@ a {
     display: block;
 }
 
+.cong {
+    background: rgba(44,62,80,0.7);
+    padding: 40px;
+    height: 150px;
+    margin: 0 auto;
+    margin-top: 60px;
+    width: 240px;
+}
+h2 {
+    margin-top: 35px;
+    margin-left: 10px;
+}
+.congSignUp, .congLogIn {
+    display: none;
+}
+
 
 

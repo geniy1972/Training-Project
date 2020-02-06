@@ -4,9 +4,9 @@ $(document).ready(function () {
     $('#formLogIn').on('submit', valid);
 
     //let email = document.getElementById('email');
-    let email = $('#email_logIn');
+    let email_logIn = $('#email_logIn');
     //let password = document.getElementById('password');
-    let password = $('#password_logIn');
+    let password_logIn = $('#password_logIn');
 
     //let containers = document.querySelectorAll('.fields');
     let containers = $('.fields');
@@ -21,7 +21,7 @@ $(document).ready(function () {
     const classArray = $(errorsTypes).map(function (index, item) {
         return 'error_' + item
     }).get().join(" ");
-    console.log(classArray);
+    //console.log(classArray);
 
     let errorsFunctions = {
         blank: function (input) {
@@ -84,6 +84,7 @@ $(document).ready(function () {
         //         }
         //     }
         // }
+
         $(inputs).each(function (i) {
             for (let j = 0; j < errorsTypes.length; j++) {
                 if ($(this).attr('data-errors').includes(errorsTypes[j])) {
@@ -99,7 +100,7 @@ $(document).ready(function () {
         // if (checkUsers(email.value, password.value)) {
         //     window.location.assign("congLogIn.html");
         // }
-        if (checkUsers($(email).val(), $(password).val())) {
+        if (checkUsers($(email_logIn).val(), $(password_logIn).val())) {
             window.location.assign("congLogIn.html");
         }
     }
