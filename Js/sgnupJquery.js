@@ -28,6 +28,8 @@ $(document).ready(function () {
     }).get().join(" ");
     //console.log(classArray);
 
+    let out = document.getElementById('out');
+
     let errorsFunctions = {
         blank: function (input) {
             if (!$(input).val()) {
@@ -95,6 +97,11 @@ $(document).ready(function () {
         }
     }
 
+    function fadeOutElement(elementOut, elementIn) {
+        $(elementOut).fadeOut(2000)
+        $(elementIn).fadeIn(2000);
+    }
+
     let logInForm = $('.signin');
     let signUpForm = $('.signup');
     let congLogIn = $('.congLogIn')
@@ -115,6 +122,10 @@ $(document).ready(function () {
         // $(signUpForm).fadeOut(2000, function () {
         //     $(logInForm).fadeIn(2000);
         // });
+        fadeOutElement(signUpForm, logInForm)
+    })
+
+    $(document).on('click', '#logInPage', function () {
         fadeOutElement(signUpForm, logInForm)
     })
 
@@ -139,10 +150,7 @@ $(document).ready(function () {
 
     //
 
-    function fadeOutElement(elementOut, elementIn) {
-        $(elementOut).fadeOut(2000)
-        $(elementIn).fadeIn(2000);
-    }
+
 
     function valid() {
         event.preventDefault();
@@ -213,11 +221,27 @@ $(document).ready(function () {
         if (checkUsers($(email_logIn).val(), $(password_logIn).val())) {
             //window.location.assign("congLogIn.html");
 
-            fadeOutElement(logInForm, congLogIn)
+            fadeOutElement(logInForm, congLogIn);
 
-            // $(logInForm).fadeOut(2000, function () {
-            //     $(congLogIn).fadeIn(2000);
-            // });
+
+            $(logInForm).fadeOut(2000, function () {
+                $(congLogIn).fadeIn(2000);
+
+                // for (let i = 0; i < objArray.length; i++) {
+                //     $.each(objArray[i], function (key, value) {
+                //         $('#out').append(key + ": " + value + "<br>");
+                //     })
+                //     $('#out').append("<br>");
+                // }
+
+                $.each(objArray, function (obj, data) {
+                    $.each(data, function (key, value) {
+                        $('#out').append(key + ": " + value + "<br>")
+                    })
+                    $('#out').append("<br>");
+                })
+
+            });
 
         }
 

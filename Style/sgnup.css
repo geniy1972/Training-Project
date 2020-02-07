@@ -4,7 +4,7 @@
 }
 
 body {
-    color: #fff;
+    /* color: #fff; */
     background: #ecf1f4;
     font-family: sans-serif;
 }
@@ -39,6 +39,7 @@ form
 {
     width: 240px;
     text-align: center;
+    color: #fff;
 }
 
 h1  {
@@ -132,7 +133,7 @@ a {
 }
 
 .cong {
-    background: rgba(44,62,80,0.7);
+    /* background: rgba(44,62,80,0.7); */
     padding: 40px;
     height: 150px;
     margin: 0 auto;
@@ -145,6 +146,13 @@ h2 {
 }
 .congSignUp, .congLogIn {
     display: none;
+}
+
+#out {
+    width: 15%;
+    margin: 0 auto;
+    padding: 50px;
+    /* text-align: center; */
 }
 
 
