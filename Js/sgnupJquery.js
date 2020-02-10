@@ -98,25 +98,18 @@ $(document).ready(function () {
     }
 
     function fadeOutElement(elementOut, elementIn) {
-        $(elementOut).fadeOut(2000)
-        $(elementIn).fadeIn(2000);
+        // $(elementOut).fadeOut(2000)
+        // $(elementIn).fadeIn(2000);
+        $(elementOut).fadeOut(2000, function () {
+            $(elementIn).fadeIn(2000);
+        });
     }
 
     let logInForm = $('.signin');
     let signUpForm = $('.signup');
     let congLogIn = $('.congLogIn')
+    let congSignUp = $('.congSignUp')
 
-    // $(document).on('click', '#logIn', function () {
-    //     logInForm.css('display', 'block');
-    //     //signUpForm.css('display', 'none');
-    //     $(signUpForm).replaceWith(logInForm);
-    // })
-
-    // $(document).on('click', '#signUp', function () {
-    //     //logInForm.css('display', 'none');
-    //     signUpForm.css('display', 'block');
-    //     $(logInForm).replaceWith(signUpForm);
-    // })
 
     $(document).on('click', '#logIn', function () {
         // $(signUpForm).fadeOut(2000, function () {
@@ -126,7 +119,7 @@ $(document).ready(function () {
     })
 
     $(document).on('click', '#logInPage', function () {
-        fadeOutElement(signUpForm, logInForm)
+        fadeOutElement(congSignUp, logInForm)
     })
 
     $(document).on('click', '#signUp', function () {
@@ -184,6 +177,22 @@ $(document).ready(function () {
             //obj.email = email.value;
             obj.email = $(email).val();
 
+
+            // if (!consistUsers()) {
+            //     //console.log(data['email'])
+            //     alert('User has already been created');
+            //     return false;
+            // }
+
+            // else {
+            //     savelocalStorage(obj);
+            //     //window.location.assign("congSignUp.html");
+            //     $(signUpForm).fadeOut(2000, function () {
+            //         $('.congSignUp').fadeIn(2000);
+            //     });
+            // }
+
+
             savelocalStorage(obj);
             //window.location.assign("congSignUp.html");
             $(signUpForm).fadeOut(2000, function () {
@@ -197,8 +206,8 @@ $(document).ready(function () {
     function valid_login() {
         event.preventDefault();
 
-        // let errors_login = false;
-        // let error_login = false;
+        let errors_login = false;
+        let error_login = false;
 
         $('.fields').removeClass(classArray);
         $('.fields').removeClass('has_errors');
@@ -208,14 +217,15 @@ $(document).ready(function () {
         $(inputs_login).each(function (i) {
             for (let j = 0; j < errorsTypes.length; j++) {
                 if ($(this).attr('data-errors').includes(errorsTypes[j])) {
-                    //error_login = !errorsFunctions[errorsTypes[j]](inputs_login[i]);
-                    errorsFunctions[errorsTypes[j]](inputs_login[i]);
-                    // if (error_login == true) {
-                    //     errors_login = true;
-                    // }
+                    error_login = !errorsFunctions[errorsTypes[j]](inputs_login[i]);
+                    //errorsFunctions[errorsTypes[j]](inputs_login[i]);
+                    if (error_login == true) {
+                        errors_login = true;
+                    }
                 }
             }
         })
+
 
 
         if (checkUsers($(email_logIn).val(), $(password_logIn).val())) {
@@ -240,6 +250,29 @@ $(document).ready(function () {
                     })
                     $('#out').append("<br>");
                 })
+
+                // $.each(objArray, function (obj, data) {
+                //     $.each(data, function (key, value) {
+                //         $('#out').append(key + ": " + value + "<br>")
+                //     })
+                //     $('#out').append("<br>");
+                // })
+
+                let table = document.querySelector('#table');
+
+                fillTable(table, objArray);
+
+                function fillTable(table, objArray) {
+                    for (let i = 0; i < objArray.length; i++) {
+                        let tr = document.createElement('tr');
+                        for (let j = 0; j < objArray[i].length; j++) {
+                            let td = document.createElement('td');
+                            td.innerHTML = objArray[i][j];
+                            tr.appendChild(td);
+                        }
+                        table.appendChild(tr);
+                    }
+                }
 
             });
 
