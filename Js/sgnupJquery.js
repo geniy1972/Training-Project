@@ -87,7 +87,7 @@ $(document).ready(function () {
             }
         },
         authentication: function (input) {
-            if (!checkUsers()) {
+            if (!checkUsers($(email_logIn).val(), $(password_logIn).val())) {
                 $(input).parent().addClass('has_errors error_authentication');
                 return false;
             }
@@ -177,27 +177,19 @@ $(document).ready(function () {
             //obj.email = email.value;
             obj.email = $(email).val();
 
+            console.log(consistUsers());
+            if (consistUsers()) {
+                return false;
+            }
 
-            // if (!consistUsers()) {
-            //     //console.log(data['email'])
-            //     alert('User has already been created');
-            //     return false;
-            // }
+            else {
+                savelocalStorage(obj);
+                //window.location.assign("congSignUp.html");
+                $(signUpForm).fadeOut(2000, function () {
+                    $('.congSignUp').fadeIn(2000);
+                });
+            }
 
-            // else {
-            //     savelocalStorage(obj);
-            //     //window.location.assign("congSignUp.html");
-            //     $(signUpForm).fadeOut(2000, function () {
-            //         $('.congSignUp').fadeIn(2000);
-            //     });
-            // }
-
-
-            savelocalStorage(obj);
-            //window.location.assign("congSignUp.html");
-            $(signUpForm).fadeOut(2000, function () {
-                $('.congSignUp').fadeIn(2000);
-            });
 
         }
 
@@ -206,8 +198,8 @@ $(document).ready(function () {
     function valid_login() {
         event.preventDefault();
 
-        let errors_login = false;
-        let error_login = false;
+        // let errors_login = false;
+        // let error_login = false;
 
         $('.fields').removeClass(classArray);
         $('.fields').removeClass('has_errors');
@@ -217,11 +209,11 @@ $(document).ready(function () {
         $(inputs_login).each(function (i) {
             for (let j = 0; j < errorsTypes.length; j++) {
                 if ($(this).attr('data-errors').includes(errorsTypes[j])) {
-                    error_login = !errorsFunctions[errorsTypes[j]](inputs_login[i]);
-                    //errorsFunctions[errorsTypes[j]](inputs_login[i]);
-                    if (error_login == true) {
-                        errors_login = true;
-                    }
+                    //error_login = !errorsFunctions[errorsTypes[j]](inputs_login[i]);
+                    errorsFunctions[errorsTypes[j]](inputs_login[i]);
+                    // if (error_login == true) {
+                    //     errors_login = true;
+                    // }
                 }
             }
         })
@@ -244,12 +236,12 @@ $(document).ready(function () {
                 //     $('#out').append("<br>");
                 // }
 
-                $.each(objArray, function (obj, data) {
-                    $.each(data, function (key, value) {
-                        $('#out').append(key + ": " + value + "<br>")
-                    })
-                    $('#out').append("<br>");
-                })
+                // $.each(objArray, function (obj, data) {
+                //     $.each(data, function (key, value) {
+                //         $('#out').append(key + ": " + value + "<br>")
+                //     })
+                //     $('#out').append("<br>");
+                // })
 
                 // $.each(objArray, function (obj, data) {
                 //     $.each(data, function (key, value) {
@@ -258,21 +250,29 @@ $(document).ready(function () {
                 //     $('#out').append("<br>");
                 // })
 
-                let table = document.querySelector('#table');
 
-                fillTable(table, objArray);
+                let table = $('#table');
+                let tr = $('<tr></tr>');
+                let caption = $('<caption><h2>List of Users</h2></caption>')
 
-                function fillTable(table, objArray) {
-                    for (let i = 0; i < objArray.length; i++) {
-                        let tr = document.createElement('tr');
-                        for (let j = 0; j < objArray[i].length; j++) {
-                            let td = document.createElement('td');
-                            td.innerHTML = objArray[i][j];
-                            tr.appendChild(td);
-                        }
-                        table.appendChild(tr);
-                    }
-                }
+                $.each(objArray[0], function (key, value) {
+                    let th = $('<th></th>');
+                    $(th).text(key)
+                    $(tr).append(th);
+                })
+                $(table).append(tr);
+
+                $.each(objArray, function (obj, data) {
+                    let tr = $('<tr></tr>');
+
+                    $.each(data, function (key, value) {
+                        let td = $('<td></td>');
+                        $(td).text(value)
+                        $(tr).append(td);
+                    })
+                    $(table).append(caption);
+                    $(table).append(tr);
+                })
 
             });
 

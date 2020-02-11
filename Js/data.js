@@ -25,22 +25,16 @@ function checkUsers(email, password) {
 
 
 function consistUsers() {
-
+    let flag = false;
     $.each(objArray, function (obj, data) {
         if ($(email).val() === data['email']) {
-            // console.log(data['email'])
-            return false;
+            alert('User has already been created');
+            //console.log(data['email'])
+            flag = true;
         }
-        // $.each(data, function (key, value) {
-        //     console.log(value);
-        //     if ($(email).val() === value['email'] && $(password).val() === value['password']) {
-        //         console.log(value['email'])
-        //         return true;
-        //     }
-        // })
 
-        return true;
     })
+    return flag;
 }
 
 
@@ -55,3 +49,5 @@ function consistUsers() {
 //         })
 //     }
 // }
+
+

@@ -157,6 +157,25 @@ h2 {
     padding: 50px;
     /* text-align: center; */
 }
+table {
+    width: 30%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    text-align: center;
+  }
+  
+  table, th, td {
+    border: 1px solid black;
+    padding: 5px;
+  }
+  table caption {
+    padding: 5px;
+  }
+  table th {
+    background:rgba(44, 62, 80, 0.7);
+    /* background-color: #d0d3d4; */
+    color: #fff;
+  }
 
 
 
