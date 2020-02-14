@@ -144,6 +144,30 @@ $(document).ready(function () {
     //
 
 
+    let table = $('#table');
+    let tr = $('<tr></tr>');
+    let caption = $('<caption><h2>List of Users</h2></caption>')
+
+    $.each(objArray[0], function (key, value) {
+        let th = $('<th></th>');
+        $(th).text(key);
+        $(tr).append(th);
+    })
+    $(table).append(tr);
+
+    $.each(objArray, function (obj, data) {
+        let tr = $('<tr></tr>');
+
+        $.each(data, function (key, value) {
+            let td = $('<td></td>');
+            $(td).text(value);
+            $(tr).append(td);
+            //$(tr).append(td).text(value);
+        })
+        $(table).append(caption);
+        $(table).append(tr);
+    })
+
 
     function valid() {
         event.preventDefault();
@@ -251,28 +275,29 @@ $(document).ready(function () {
                 // })
 
 
-                let table = $('#table');
-                let tr = $('<tr></tr>');
-                let caption = $('<caption><h2>List of Users</h2></caption>')
+                // let table = $('#table');
+                // let tr = $('<tr></tr>');
+                // let caption = $('<caption><h2>List of Users</h2></caption>')
 
-                $.each(objArray[0], function (key, value) {
-                    let th = $('<th></th>');
-                    $(th).text(key)
-                    $(tr).append(th);
-                })
-                $(table).append(tr);
+                // $.each(objArray[0], function (key, value) {
+                //     let th = $('<th></th>');
+                //     $(th).text(key);
+                //     $(tr).append(th);
+                //                                         })
+                // $(table).append(tr);
 
-                $.each(objArray, function (obj, data) {
-                    let tr = $('<tr></tr>');
+                // $.each(objArray, function (obj, data) {
+                //     let tr = $('<tr></tr>');
 
-                    $.each(data, function (key, value) {
-                        let td = $('<td></td>');
-                        $(td).text(value)
-                        $(tr).append(td);
-                    })
-                    $(table).append(caption);
-                    $(table).append(tr);
-                })
+                //     $.each(data, function (key, value) {
+                //         let td = $('<td></td>');
+                //         $(td).text(value);
+                //         $(tr).append(td);
+                //         //$(tr).append(td).text(value);
+                //     })
+                //     $(table).append(caption);
+                //     $(table).append(tr);
+                // })
 
             });
 
