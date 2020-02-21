@@ -1,12 +1,12 @@
 var compare = {
-  name: function(a, b) {
+  name: function (a, b) {
     if (a < b) {
       return -1;
     } else {
       return a > b ? 1 : 0;
     }
   },
-  time: function(a, b) {
+  time: function (a, b) {
     a = a.split(':');
     b = b.split(':');
 
@@ -15,7 +15,7 @@ var compare = {
 
     return a - b;
   },
-  date: function(a, b) {
+  date: function (a, b) {
     a = new Date(a);
     b = new Date(b);
 
@@ -23,41 +23,44 @@ var compare = {
   }
 };
 
-$('.sortable').each(function() {
+$('.sortable').each(function () {
   var $table = $(this);
+  //console.log($table);
   var $tbody = $table.find('tbody');
+  console.log($tbody);
   var $controls = $table.find('th');
-  
-  var rows = $tbody.find('tr').toArray();
 
-  $controls.on('click', function() {
+  var rows = $tbody.find('tr').toArray();
+  //console.log(rows);
+
+  $controls.on('click', function () {
     var $header = $(this);
 
     var order = $header.data('sort');
 
     var column;
 
-    if ($header.is('.ascending') || $header.is('.descending')) {  
-      
+    if ($header.is('.ascending') || $header.is('.descending')) {
+
       $header.toggleClass('ascending descending');
-      
+
       $tbody.html(rows.reverse());
-    
-    } else {              
-      
+
+    } else {
+
       $header.addClass('ascending');
 
-      $header.siblings().removeClass('ascending descending'); 
-      
+      $header.siblings().removeClass('ascending descending');
+
       if (compare.hasOwnProperty(order)) {
         column = $controls.index(this);
 
-        rows.sort(function(a, b) {
+        rows.sort(function (a, b) {
           a = $(a).find('td').eq(column).text();
           b = $(b).find('td').eq(column).text();
-          
+
           return compare[order](a, b);
-        
+
         });
 
         $tbody.html(rows);

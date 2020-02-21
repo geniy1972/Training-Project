@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Log In form</title>
+    <link rel="stylesheet" href="Style/logn.css">
+</head>
+
+<body>
+    <div class="signin">
+        <h1>Log In</h1>
+        <form action="" method="post" name="test" id="form">
+            <div class="fields">
+                <input class="field" id="email" name="email" type="text" placeholder="Email address"
+                    data-errors="blank authentication">
+                <span class="name_error msg-blank">Cannot be blank</span>
+                <span class="name_error msg-auth">Email or Password is incorrect</span>
+            </div>
+
+
+            <div class="fields">
+                <input class="field" id="password" name="password" type="password" placeholder="Password"
+                    data-errors="blank authentication">
+                <span class="name_error msg-blank">Cannot be blank</span>
+                <span class="name_error msg-auth">Email or Password is incorrect</span>
+            </div>
+
+
+            <input id="btn" type="submit" value="Log In" />
+            Don't have account?<a href="sgnup.html" style="font-family:'Play', sans-serif;">&nbsp;Sign Up</a>
+        </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- <script src="Js/logn.js"></script> -->
+    <script src="Js/lognJquery.js"></script>
+    <!-- <script src="Js/logn2.js"></script> -->
+    <script src="Js/data.js"></script>
+
+</body>
+
+</html>

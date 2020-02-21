@@ -13,31 +13,31 @@ body {
 {
     background:rgba(44, 62, 80, 0.7);
 	padding:40px;
-	width:250px;
+	/* width:250px; */
 	margin:auto;
-	margin-top:80px;
-	height:430px;
+	/* margin-top:80px; */
+	/* height:430px;
 	margin-left:180px;
 	margin:0 auto;
-    margin-top:90px;
-    display: block;
+    margin-top:90px; */
+    /* display: block; */
 }
 .signin
 {
     background:rgba(44, 62, 80, 0.7);
 	padding:40px;
-	width:250px;
+	/* width:250px; */
 	margin:auto;
-	margin-top:80px;
+	/* margin-top:80px;
 	height:430px;
 	margin-left:180px;
 	margin:0 auto;
-    margin-top:90px;
+    margin-top:90px; */
     display: none;
 }
 form
 {
-    width: 240px;
+    /* width: 240px; */
     text-align: center;
     color: #fff;
 }
@@ -182,6 +182,31 @@ table {
   .buttons button {
       width: 60px;
   }
+
+  /* .modalNew {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+  }
+  .modal-contentNew {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+  }
+  .closeModal {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+  } */
 
 
 
